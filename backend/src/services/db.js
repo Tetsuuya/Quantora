@@ -4,8 +4,12 @@
 
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 
-const DATA_DIR = path.join(__dirname, "../data");
+// On Vercel, the filesystem is read-only except for /tmp
+const DATA_DIR = process.env.VERCEL
+  ? path.join(os.tmpdir(), "quantora-data")
+  : path.join(__dirname, "../data");
 
 // Ensure data directory and files exist
 const FILES = {
