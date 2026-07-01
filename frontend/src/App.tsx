@@ -1,6 +1,6 @@
 // src/App.tsx
 import { useState } from 'react';
-import { LayoutDashboard, Package, Truck, ShoppingCart, Bell, Store, Link } from 'lucide-react';
+import { LayoutDashboard, Package, Truck, ShoppingCart, Bell, Store, Link, Lock, ArrowRight } from 'lucide-react';
 import './index.css';
 import { useToast } from './hooks/useToast';
 import ToastContainer from './components/ToastContainer';
@@ -35,6 +35,73 @@ export default function App() {
   const [scannerOpen, setScannerOpen] = useState(false);
   const { toasts, showToast, removeToast } = useToast();
 
+  // Authentication State
+  const [passcode, setPasscode] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('quantora_auth') === 'true';
+  });
+  const [authError, setAuthError] = useState(false);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Default passcode is admin123
+    if (passcode === 'admin123') {
+      localStorage.setItem('quantora_auth', 'true');
+      setIsAuthenticated(true);
+      setAuthError(false);
+      showToast('Welcome to Quantora IMS!', 'success');
+    } else {
+      setAuthError(true);
+      showToast('Incorrect passcode. Try again.', 'error');
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('quantora_auth');
+    setIsAuthenticated(false);
+    setPasscode('');
+  };
+
+  // ── Lock Screen View ───────────────────────────────────────────────────────
+  if (!isAuthenticated) {
+    return (
+      <div style={{ display: 'flex', height: '100vh', width: '100vw', alignItems: 'center', justifyContent: 'center', background: 'radial-gradient(circle at 10% 20%, #1a1a2e 0%, #11111e 90%)', fontFamily: 'var(--font-body)' }}>
+        <div className="card" style={{ width: '100%', maxWidth: 400, border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(26,26,46,0.85)', backdropFilter: 'blur(10px)', boxShadow: 'var(--shadow-xl)', padding: 10 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 'var(--sp-6) var(--sp-4)', textAlign: 'center' }}>
+            <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'rgba(0,128,96,0.15)', border: '1px solid rgba(0,128,96,0.3)', display: 'flex', alignItems: 'center', justifyItems: 'center', justifyContent: 'center', marginBottom: 'var(--sp-4)', color: 'var(--primary)', boxShadow: '0 0 20px rgba(0,128,96,0.2)' }}>
+              <Lock size={28} style={{ color: 'var(--primary)' }} />
+            </div>
+            <h1 style={{ fontFamily: 'var(--font-heading)', color: '#fff', fontSize: 24, fontWeight: 800, marginBottom: 8, letterSpacing: '-0.5px' }}>Quantora IMS</h1>
+            <p style={{ color: 'var(--sidebar-text)', fontSize: 13, marginBottom: 28 }}>Secure inventory connection port. Enter passcode to establish session.</p>
+
+            <form onSubmit={handleLogin} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div className="form-group" style={{ textAlign: 'left', marginBottom: 0 }}>
+                <label className="form-label" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 6 }}>Dashboard Passcode</label>
+                <input
+                  type="password"
+                  className="form-input"
+                  style={{ background: 'rgba(0,0,0,0.25)', border: authError ? '1px solid var(--danger)' : '1px solid rgba(255,255,255,0.1)', color: '#fff', textAlign: 'center', fontSize: 18, letterSpacing: '4px', height: 48, borderRadius: 'var(--radius-lg)' }}
+                  placeholder="••••••••"
+                  value={passcode}
+                  onChange={e => setPasscode(e.target.value)}
+                  autoFocus
+                />
+              </div>
+              <button type="submit" className="btn btn-primary" style={{ height: 44, justifyContent: 'center', borderRadius: 'var(--radius-lg)' }}>
+                Access Console <ArrowRight size={16} />
+              </button>
+            </form>
+            <div style={{ marginTop: 24, padding: '8px 16px', background: 'rgba(255,255,255,0.03)', borderRadius: 'var(--radius)', border: '1px solid rgba(255,255,255,0.05)', fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>
+              Demo Passcode: <strong style={{ color: 'var(--primary)' }}>admin123</strong>
+            </div>
+          </div>
+        </div>
+        <ToastContainer toasts={toasts} onRemove={removeToast} />
+      </div>
+    );
+  }
+
+  // ── Authorized View ────────────────────────────────────────────────────────
   const { title, sub } = PAGE_TITLES[page];
 
   return (
@@ -82,16 +149,14 @@ export default function App() {
             >
               <Store size={12} /> Admin
             </a>
-            <a
-              href="https://partners.shopify.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: 'rgba(255,255,255,0.45)', padding: '4px 6px', borderRadius: 6, transition: 'color 0.18s' }}
+            <button
+              onClick={handleLogout}
+              style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11, color: 'rgba(255,255,255,0.45)', padding: '4px 6px', borderRadius: 6, transition: 'color 0.18s', width: 'auto' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
             >
-              <Link size={12} /> Partners
-            </a>
+              Lock Console
+            </button>
           </div>
         </div>
       </aside>

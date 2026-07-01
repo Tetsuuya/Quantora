@@ -1,7 +1,7 @@
 // src/api/client.ts
 // Central API client — all requests go through here to our Express backend.
 
-const BASE = 'http://localhost:3001/api';
+const BASE = 'https://quantora-theta.vercel.app/api';
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
