@@ -128,6 +128,7 @@ async function getProducts() {
                 node {
                   sku barcode price
                   inventoryItem {
+                    id
                     inventoryLevels(first: 10) {
                       edges {
                         node {
@@ -162,6 +163,7 @@ async function getProducts() {
         location_id: lvl.location.id,
         location_name: lvl.location.name,
         available: lvl.quantities[0]?.quantity || 0,
+        inventory_item_id: variant?.inventoryItem?.id || "",
       })),
     };
   });
@@ -194,6 +196,8 @@ async function setInventoryLevel(inventoryItemId, locationId, quantity) {
     {
       input: {
         reason: "correction",
+        name: "available",
+        ignoreCompareQuantity: true,
         quantities: [{ inventoryItemId, locationId, quantity }],
       },
     }
@@ -203,10 +207,117 @@ async function setInventoryLevel(inventoryItemId, locationId, quantity) {
   return { success: true };
 }
 
+// ─── MOCK SALES ORDERS ────────────────────────────────────────────────────────
+const MOCK_SALES_ORDERS = [
+  {
+    id: "gid://shopify/Order/1001",
+    name: "#1001",
+    createdAt: new Date().toISOString(),
+    customer: {
+      firstName: "Elma",
+      lastName: "Sajol",
+      email: "rheneljhon@gmail.com",
+    },
+    totalPriceSet: {
+      shopMoney: {
+        amount: "959.00",
+        currencyCode: "CAD",
+      },
+    },
+    displayFinancialStatus: "PAID",
+    displayFulfillmentStatus: "UNFULFILLED",
+    lineItems: [
+      {
+        title: "The Complete Snowboard",
+        quantity: 1,
+      },
+    ],
+  },
+  {
+    id: "gid://shopify/Order/1002",
+    name: "#1002",
+    createdAt: new Date(Date.now() - 3600000 * 24).toISOString(), // 1 day ago
+    customer: {
+      firstName: "John",
+      lastName: "Smith",
+      email: "john.smith@gmail.com",
+    },
+    totalPriceSet: {
+      shopMoney: {
+        amount: "89.99",
+        currencyCode: "CAD",
+      },
+    },
+    displayFinancialStatus: "PAID",
+    displayFulfillmentStatus: "FULFILLED",
+    lineItems: [
+      {
+        title: "Premium Leather Derby Shoes",
+        quantity: 1,
+      },
+    ],
+  },
+];
+
+/**
+ * Fetch recent sales orders from Shopify.
+ */
+async function getSalesOrders() {
+  if (IS_DEMO_MODE) {
+    return MOCK_SALES_ORDERS;
+  }
+
+  const data = await shopifyQuery(`
+    query GetSalesOrders {
+      orders(first: 20, sortKey: CREATED_AT, reverse: true) {
+        edges {
+          node {
+            id
+            name
+            createdAt
+            totalPriceSet {
+              shopMoney {
+                amount
+                currencyCode
+              }
+            }
+            displayFinancialStatus
+            displayFulfillmentStatus
+            lineItems(first: 10) {
+              edges {
+                node {
+                  title
+                  quantity
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  return data.orders.edges.map(({ node }) => ({
+    id: node.id,
+    name: node.name,
+    createdAt: node.createdAt,
+    customer: null, // PII fields (name, email) require specific app approval on Shopify Developer plans
+    totalPriceSet: node.totalPriceSet,
+    displayFinancialStatus: node.displayFinancialStatus,
+    displayFulfillmentStatus: node.displayFulfillmentStatus,
+    lineItems: node.lineItems.edges.map(({ node: item }) => ({
+      title: item.title,
+      quantity: item.quantity,
+    })),
+  }));
+}
+
 module.exports = {
   getProducts,
   getProductByBarcode,
   setInventoryLevel,
+  getSalesOrders,
   IS_DEMO_MODE,
   MOCK_PRODUCTS,
 };
+

@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const db = require("../services/db");
+const shopify = require("../services/shopifyClient");
 
 // GET /api/orders
 router.get("/", (req, res) => {
@@ -70,19 +71,59 @@ router.post("/", (req, res) => {
 });
 
 // PUT /api/orders/:id — Update status (draft → sent → received)
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const orders = db.read("orders");
     const idx = orders.findIndex((o) => o.id === req.params.id);
     if (idx === -1) return res.status(404).json({ success: false, error: "Order not found" });
 
+    const originalStatus = orders[idx].status;
     orders[idx] = { ...orders[idx], ...req.body, id: orders[idx].id };
     db.write("orders", orders);
 
-    // If order received, resolve any related low-stock alerts
-    if (req.body.status === "received") {
+    // If order transitioned to received, sync quantities to Shopify & write audit log
+    if (req.body.status === "received" && originalStatus !== "received") {
+      const order = orders[idx];
+      const products = await shopify.getProducts();
+      const transactions = db.read("transactions") || [];
+
+      for (const item of order.line_items) {
+        const liveProd = products.find(p => p.id === item.shopify_product_id);
+        if (liveProd) {
+          // Adjust stock at the primary location
+          const firstLevel = liveProd.inventory?.[0];
+          if (firstLevel) {
+            const beforeQty = firstLevel.available;
+            const changeQty = item.quantity_ordered;
+            const afterQty = beforeQty + changeQty;
+
+            // Set new inventory level in Shopify
+            await shopify.setInventoryLevel(
+              firstLevel.inventory_item_id || firstLevel.location_id,
+              firstLevel.location_id,
+              afterQty
+            );
+
+            // Log the stock addition
+            transactions.push({
+              id: `tx_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+              product_title: liveProd.title,
+              sku: liveProd.sku || item.sku || "",
+              location_name: firstLevel.location_name,
+              qty_change: changeQty,
+              qty_before: beforeQty,
+              qty_after: afterQty,
+              reason: `PO Received (${order.po_number})`,
+              timestamp: new Date().toISOString()
+            });
+          }
+        }
+      }
+      db.write("transactions", transactions);
+
+      // Resolve related low-stock alerts
       const alerts = db.read("alerts");
-      const productIds = orders[idx].line_items.map((i) => i.shopify_product_id);
+      const productIds = order.line_items.map((i) => i.shopify_product_id);
       const updated = alerts.map((a) =>
         productIds.includes(a.shopify_product_id) && a.status === "open"
           ? { ...a, status: "resolved", resolved_at: new Date().toISOString() }
@@ -93,6 +134,7 @@ router.put("/:id", (req, res) => {
 
     res.json({ success: true, order: orders[idx] });
   } catch (err) {
+    console.error("[PUT /orders/:id]", err.message);
     res.status(500).json({ success: false, error: err.message });
   }
 });

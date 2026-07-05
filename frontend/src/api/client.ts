@@ -1,7 +1,9 @@
 // src/api/client.ts
 // Central API client — all requests go through here to our Express backend.
 
-const BASE = 'https://quantora-theta.vercel.app/api';
+const BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:3001/api'
+  : 'https://quantora-theta.vercel.app/api';
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
@@ -35,7 +37,7 @@ export const api = {
   deleteSupplier: (id: string) =>
     request<any>(`/suppliers/${id}`, { method: 'DELETE' }),
 
-  // Orders
+  // Orders (Purchase Orders)
   getOrders: () => request<any>('/orders'),
   createOrder: (data: any) =>
     request<any>('/orders', { method: 'POST', body: JSON.stringify(data) }),
@@ -43,6 +45,12 @@ export const api = {
     request<any>(`/orders/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   deleteOrder: (id: string) =>
     request<any>(`/orders/${id}`, { method: 'DELETE' }),
+
+  // Sales (Shopify Customer Orders)
+  getSalesOrders: () => request<any>('/sales'),
+
+  // Transactions (Inventory Audit Log)
+  getTransactions: () => request<any>('/transactions'),
 
   // Alerts
   getAlerts: () => request<any>('/alerts'),

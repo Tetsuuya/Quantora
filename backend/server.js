@@ -14,6 +14,8 @@ app.use("/api/products",  require("./src/routes/products"));
 app.use("/api/inventory", require("./src/routes/inventory"));
 app.use("/api/suppliers", require("./src/routes/suppliers"));
 app.use("/api/orders",    require("./src/routes/orders"));
+app.use("/api/sales",     require("./src/routes/sales"));
+app.use("/api/transactions", require("./src/routes/transactions"));
 app.use("/api/alerts",    require("./src/routes/alerts"));
 app.use("/api/chat",      require("./src/routes/chat"));
 

@@ -35,11 +35,18 @@ export default function Inventory({ showToast, onScanClick }: InventoryProps) {
   const saveQty = async () => {
     if (!editingQty) return;
     try {
+      const prod = products.find(p => p.id === editingQty.prodId);
+      const loc = prod?.inventory?.find((i: any) => i.location_id === editingQty.locId);
+
       await api.adjustInventory({
         product_id: editingQty.prodId,
         location_id: editingQty.locId,
         quantity: editingQty.val,
-        inventory_item_id: editingQty.locId,
+        inventory_item_id: loc?.inventory_item_id || editingQty.locId,
+        product_title: prod?.title || 'Unknown Product',
+        sku: prod?.sku || '',
+        location_name: loc?.location_name || 'Unknown Location',
+        previous_quantity: loc?.available || 0,
       });
       showToast('Stock level updated!', 'success');
       setEditingQty(null);

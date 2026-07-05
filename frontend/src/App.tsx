@@ -1,6 +1,6 @@
 // src/App.tsx
 import { useState } from 'react';
-import { LayoutDashboard, Package, Truck, ShoppingCart, Bell, Store, Link, Lock, ArrowRight } from 'lucide-react';
+import { LayoutDashboard, Package, Truck, ShoppingCart, Bell, Store, Link, Lock, ArrowRight, ShoppingBag, History } from 'lucide-react';
 import './index.css';
 import { useToast } from './hooks/useToast';
 import ToastContainer from './components/ToastContainer';
@@ -8,15 +8,19 @@ import Overview from './components/Overview';
 import Inventory from './components/Inventory';
 import Suppliers from './components/Suppliers';
 import PurchaseOrders from './components/PurchaseOrders';
+import SalesOrders from './components/SalesOrders';
+import ActivityLog from './components/ActivityLog';
 import Alerts from './components/Alerts';
 import ChatWidget from './components/ChatWidget';
 import BarcodeScanner from './components/BarcodeScanner';
 
-type Page = 'overview' | 'inventory' | 'suppliers' | 'orders' | 'alerts';
+type Page = 'overview' | 'inventory' | 'sales' | 'suppliers' | 'orders' | 'alerts' | 'activity';
 
 const NAV = [
   { id: 'overview', label: 'Overview', icon: LayoutDashboard },
   { id: 'inventory', label: 'Inventory', icon: Package },
+  { id: 'sales', label: 'Sales Orders', icon: ShoppingBag },
+  { id: 'activity', label: 'Activity Log', icon: History },
   { id: 'suppliers', label: 'Suppliers', icon: Truck },
   { id: 'orders', label: 'Purchase Orders', icon: ShoppingCart },
   { id: 'alerts', label: 'Alerts', icon: Bell },
@@ -25,6 +29,8 @@ const NAV = [
 const PAGE_TITLES: Record<Page, { title: string; sub: string }> = {
   overview: { title: 'Dashboard', sub: 'Live Shopify data' },
   inventory: { title: 'Inventory Manager', sub: 'Real-time stock levels' },
+  sales: { title: 'Sales Orders', sub: 'Storefront sales activity' },
+  activity: { title: 'Activity Log', sub: 'Stock adjustments history' },
   suppliers: { title: 'Supplier Directory', sub: 'Manage vendor contacts' },
   orders: { title: 'Purchase Orders', sub: 'Restock management' },
   alerts: { title: 'Stock Alerts', sub: 'Low-stock notifications' },
@@ -181,6 +187,8 @@ export default function App() {
         <main className="page-content">
           {page === 'overview' && <Overview />}
           {page === 'inventory' && <Inventory showToast={showToast} onScanClick={() => setScannerOpen(true)} />}
+          {page === 'sales' && <SalesOrders showToast={showToast} />}
+          {page === 'activity' && <ActivityLog showToast={showToast} />}
           {page === 'suppliers' && <Suppliers showToast={showToast} />}
           {page === 'orders' && <PurchaseOrders showToast={showToast} />}
           {page === 'alerts' && <Alerts showToast={showToast} />}

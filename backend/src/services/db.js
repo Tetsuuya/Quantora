@@ -18,6 +18,7 @@ const FILES = {
   alerts: path.join(DATA_DIR, "alerts.json"),
   extensions: path.join(DATA_DIR, "extensions.json"),
   chats: path.join(DATA_DIR, "chats.json"),
+  transactions: path.join(DATA_DIR, "transactions.json"),
 };
 
 const DEFAULTS = {
@@ -68,6 +69,30 @@ const DEFAULTS = {
     },
   ],
   chats: [],
+  transactions: [
+    {
+      id: "tx_001",
+      product_title: "The Complete Snowboard",
+      sku: "SNOWBOARD-BLUE",
+      location_name: "Snow City Warehouse",
+      qty_change: -1,
+      qty_before: 12,
+      qty_after: 11,
+      reason: "Storefront Sales Order #1001",
+      timestamp: new Date(Date.now() - 3600000 * 2).toISOString(), // 2 hours ago
+    },
+    {
+      id: "tx_002",
+      product_title: "Premium Leather Derby Shoes",
+      sku: "SHOE-BRN-42",
+      location_name: "Warehouse A",
+      qty_change: 20,
+      qty_before: 3,
+      qty_after: 23,
+      reason: "B2B Purchase Order PO-2026-001 Received",
+      timestamp: new Date(Date.now() - 3600000 * 24).toISOString(), // 1 day ago
+    }
+  ],
 };
 
 function ensureFiles() {
