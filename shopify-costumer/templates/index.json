@@ -46,10 +46,10 @@
       "custom_css": [],
       "settings": {
         "image": "shopify://shop_images/theme_cover_image.jpg",
-        "image_overlay_opacity": 0,
+        "image_overlay_opacity": 40,
         "image_height": "medium",
         "desktop_content_position": "middle-left",
-        "show_text_box": true,
+        "show_text_box": false,
         "desktop_content_alignment": "left",
         "color_scheme": "background-1",
         "image_behavior": "none",

@@ -1,53 +1,36 @@
 /*
- * Quantora Premium Custom Theme Styles
- * Overlays custom layouts, spacing, typography, animations, and UI details on top of standard Dawn theme.
+ * Quantora Minimalist & Modern Theme Overrides
+ * Focuses on absolute cleanliness, rich whitespace, flat monochrome styling, and subtle interactive details.
  */
 
 :root {
   --font-body-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
   --font-heading-family: 'Outfit', sans-serif !important;
-  --primary-accent: #008060; /* Sleek brand green */
 }
 
-/* --- Typography & Headings --- */
+/* --- Core & Body --- */
+body {
+  font-family: var(--font-body-family) !important;
+  background-color: #ffffff !important; /* Pure, clean white canvas */
+  color: #1a1a1a !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Clean Typography --- */
 h1, h2, h3, h4, h5, h6,
 .h0, .h1, .h2, .h3, .h4, .h5,
 .product__title, .collection-hero__title {
   font-family: var(--font-heading-family) !important;
   font-weight: 700 !important;
-  letter-spacing: -0.04em !important; /* Premium tight geometric headings */
-  line-height: 1.12 !important;
-  color: #0c0f12 !important;
+  letter-spacing: -0.04em !important; /* Tight, sleek geometric headings */
+  color: #111111 !important;
 }
 
 h1 {
   font-weight: 800 !important;
 }
 
-body {
-  font-family: var(--font-body-family) !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f7f9fa !important; /* Cleaner, softer modern canvas background */
-}
-
-/* --- Smooth Entrance Animations --- */
-@keyframes premiumFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-main#MainContent {
-  animation: premiumFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-/* --- Glassmorphism Sticky Header --- */
+/* --- Minimalist Sticky Header --- */
 .shopify-section-group-header-group {
   position: sticky !important;
   top: 0;
@@ -55,203 +38,202 @@ main#MainContent {
 }
 
 .header-wrapper {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02) !important;
-  background-color: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(20px) !important; /* Ultra-clear glass blur */
-  -webkit-backdrop-filter: blur(20px) !important;
-  transition: all 0.3s ease !important;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #f2f2f2 !important;
+  box-shadow: none !important; /* Remove heavy shadow for flat layout */
+  transition: border-color 0.3s ease !important;
 }
 
-.header__active-menu-item {
-  font-weight: 700 !important;
-  color: #000 !important;
-}
-
-/* Menu link hover animation */
 .header__menu-item {
-  position: relative;
-  transition: color 0.25s ease !important;
   font-weight: 500 !important;
+  font-size: 1.35rem !important;
+  letter-spacing: 0.02em !important;
+  color: #4a4a4a !important;
 }
 
+.header__active-menu-item, 
+.header__menu-item:hover {
+  color: #000000 !important;
+}
+
+/* Minimalist link underline transition */
 .header__menu-item span {
   position: relative;
 }
-
 .header__menu-item span::after {
   content: '';
   position: absolute;
   width: 100%;
   transform: scaleX(0);
-  height: 2px;
+  height: 1.5px;
   bottom: -4px;
   left: 0;
-  background-color: #000;
+  background-color: #000000;
   transform-origin: bottom right;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s ease-out;
 }
-
 .header__menu-item:hover span::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
-/* --- Glassmorphism Hero Text Frame --- */
+/* --- Clean, Floating Hero Banner Text --- */
 .banner__box {
-  background: rgba(255, 255, 255, 0.75) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  border-radius: 24px !important;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.08) !important;
-  padding: 4rem 5rem !important;
+  background: transparent !important; /* No background box */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 2rem 0 !important;
+  max-width: 60rem !important;
 }
 
-/* --- Premium Buttons & Call-to-Actions --- */
+/* Make text inside the hero banner white to stand out against dark image overlay */
+.banner__box h2.banner__heading {
+  color: #ffffff !important;
+  font-size: calc(var(--font-heading-scale) * 4.8rem) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.banner__box .banner__text p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.6rem !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* --- Flat, Monochromatic Buttons --- */
 .button, 
 .shopify-payment-button__button--unbranded,
 .cart-drawer .drawer__footer .button {
-  border-radius: 50px !important; /* Soft pill shapes */
+  border-radius: 4px !important; /* Sharp, clean modern corners */
   text-transform: uppercase !important;
-  font-size: 1.2rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.08em !important;
-  padding: 1.4rem 3.6rem !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
-  border: 1.5px solid transparent !important;
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important; /* Spacious modern tracking */
+  padding: 1.5rem 3.6rem !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000 !important;
+  box-shadow: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Button Hover State */
 .button:not([disabled]):hover, 
 .shopify-payment-button__button--unbranded:hover {
-  transform: translateY(-3px) !important;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14) !important;
-  background-color: #000 !important;
-  color: #fff !important;
-}
-
-.button:not([disabled]):active, 
-.shopify-payment-button__button--unbranded:active {
-  transform: translateY(-1px) !important;
-}
-
-/* Secondary/Outline Button overrides */
-.button--secondary {
-  background-color: transparent !important;
-  border: 1.5px solid rgba(0, 0, 0, 0.8) !important;
-  color: #000 !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #000000 !important;
+  transform: none !important; /* Flat design — no translation */
   box-shadow: none !important;
 }
 
-.button--secondary:hover {
-  background-color: #000 !important;
-  color: #fff !important;
-  border-color: #000 !important;
+/* Outline/Secondary button style */
+.button--secondary {
+  background-color: transparent !important;
+  color: #000000 !important;
+  border: 1px solid #e0e0e0 !important;
 }
 
-/* --- Rounded, Interactive Product Cards --- */
+.button--secondary:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+/* --- Clean, Bordered Product Cards --- */
 .card-wrapper {
   background: #ffffff !important;
-  border-radius: 20px !important; /* Smooth curved card edges */
-  border: 1px solid rgba(0, 0, 0, 0.03) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.015) !important;
+  border-radius: 8px !important; /* Soft minimal radius */
+  border: 1px solid #f0f0f0 !important;
+  box-shadow: none !important; /* No shadow */
   overflow: hidden !important;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: all 0.3s ease !important;
 }
 
-/* Zoom Image effect on Hover */
 .card-wrapper:hover {
-  transform: translateY(-8px) !important;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.07) !important;
-  border-color: rgba(0, 0, 0, 0.06) !important;
-}
-
-.card-wrapper:hover .card__inner img {
-  transform: scale(1.06) !important; /* Subtle image zoom transition */
+  border-color: #111111 !important; /* Clean border color change on hover */
 }
 
 .card__inner {
-  border-radius: 18px 18px 0 0 !important;
+  border-radius: 6px 6px 0 0 !important;
   overflow: hidden !important;
-  background-color: #f3f5f6 !important;
+  background-color: #fbfbfb !important;
+  border-bottom: 1px solid #f9f9f9 !important;
 }
 
 .card__inner img {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 0.4s ease !important;
 }
 
-/* Adjust title colors inside product cards */
+.card-wrapper:hover .card__inner img {
+  transform: scale(1.03) !important; /* Very subtle image zoom */
+}
+
 .card__heading {
   font-family: var(--font-heading-family) !important;
   font-weight: 600 !important;
-  font-size: 1.6rem !important;
-  line-height: 1.25 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: -0.01em !important;
+  color: #1a1a1a !important;
   transition: color 0.2s ease !important;
 }
 
 .card-wrapper:hover .card__heading {
-  color: var(--primary-accent) !important; /* Accent glow on title hover */
+  color: #000000 !important;
 }
 
 .card-information {
-  padding: 2rem !important;
+  padding: 1.6rem !important;
 }
 
-/* Price presentation adjustment */
+/* Price presentation */
 .price {
-  font-weight: 700 !important;
-  font-size: 1.6rem !important;
-  color: #111 !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+  color: #444444 !important;
 }
 
-/* --- Softer inputs & Text fields --- */
+/* --- Flat Form Fields --- */
 .field__input {
-  border-radius: 12px !important;
-  border: 1.5px solid rgba(0, 0, 0, 0.1) !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  background-color: #fff !important;
+  border-radius: 4px !important;
+  border: 1px solid #dddddd !important;
+  background-color: #ffffff !important;
+  transition: border-color 0.2s ease !important;
 }
 
 .field__input:focus {
-  border-color: #000 !important;
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04) !important;
+  border-color: #000000 !important;
+  box-shadow: none !important; /* No shadow halo */
 }
 
-.field__label {
-  left: 1.8rem !important;
-}
-
-/* --- Layout Spacing & Spacing Alternation --- */
+/* --- Clean Section Spacing --- */
 .shopify-section {
-  margin-top: 6rem !important;
-  margin-bottom: 6rem !important;
+  margin-top: 8rem !important;
+  margin-bottom: 8rem !important;
 }
 
-.section-template--main-product {
-  padding-top: 6rem !important;
-  padding-bottom: 6rem !important;
-}
-
-/* --- Badges/Tags --- */
+/* --- Clean Badges --- */
 .badge {
-  border-radius: 6px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.06em !important;
+  border-radius: 2px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
-  font-size: 0.95rem !important;
-  padding: 0.5rem 1rem !important;
-  border: none !important;
+  font-size: 0.9rem !important;
+  padding: 0.4rem 0.8rem !important;
+  border: 1px solid #eaeaea !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
 }
 
 .badge--sale {
-  background-color: #ffebe9 !important;
-  color: #ff3b30 !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
 }
 
 /* --- Premium Image Overrides --- */
-/* Replace main hero image banner placeholder with premium snowboard action shot */
 .banner__media img,
 .banner__media--placeholder {
   content: url("https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=1600&auto=format&fit=crop") !important;
@@ -260,7 +242,6 @@ main#MainContent {
   height: 100% !important;
 }
 
-/* Replace Image-with-Text section image with premium close-up gear shot */
 .image-with-text__media img,
 .image-with-text__media--placeholder {
   content: url("https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop") !important;
