@@ -580,4 +580,61 @@ h1 {
   color: #555555 !important;
 }
 
+/* --- Planks-Style Sidebar Filter Overrides --- */
+.facets-container {
+  padding-right: 4rem !important;
+}
+
+.facets__heading {
+  font-family: var(--font-heading-family) !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  font-size: 1.4rem !important;
+  letter-spacing: 0.08em !important;
+  border-bottom: 2px solid #000000 !important;
+  padding-bottom: 1.5rem !important;
+  margin-bottom: 2rem !important;
+  color: #111111 !important;
+}
+
+.facets__summary {
+  font-family: var(--font-heading-family) !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  font-size: 1.2rem !important;
+  letter-spacing: 0.05em !important;
+  padding: 1.5rem 0 !important;
+  color: #111111 !important;
+}
+
+.facets__summary .icon-caret {
+  right: 0 !important;
+}
+
+.facets__display {
+  border: none !important;
+  background-color: transparent !important;
+  padding: 1rem 0 !important;
+}
+
+.facet-checkbox {
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  color: #444444 !important;
+  padding: 0.8rem 0 !important;
+}
+
+.facet-checkbox input[type="checkbox"] {
+  width: 1.6rem !important;
+  height: 1.6rem !important;
+  border-radius: 0px !important; /* Square checkbox */
+  border: 1px solid #ccc !important;
+}
+
+.facet-checkbox input[type="checkbox"]:checked {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+
+
 
