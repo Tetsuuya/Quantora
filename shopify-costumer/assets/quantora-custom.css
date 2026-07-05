@@ -251,8 +251,7 @@ h1 {
 }
 
 /* Replace Multirow row 1 image with premium snowboarder peak view */
-.multirow__item:nth-child(1) .image-with-text__media img,
-.multirow__item:nth-child(1) .multirow__media img {
+.multirow__inner > .image-with-text:nth-of-type(1) .image-with-text__media img {
   content: url("https://images.unsplash.com/photo-1522056690407-3d4029474f38?q=80&w=1000&auto=format&fit=crop") !important;
   object-fit: cover !important;
   width: 100% !important;
@@ -260,8 +259,7 @@ h1 {
 }
 
 /* Replace Multirow row 2 image with premium ski chairlift chair vibe */
-.multirow__item:nth-child(2) .image-with-text__media img,
-.multirow__item:nth-child(2) .multirow__media img {
+.multirow__inner > .image-with-text:nth-of-type(2) .image-with-text__media img {
   content: url("https://images.unsplash.com/photo-1517176118179-c5548a19bba4?q=80&w=1000&auto=format&fit=crop") !important;
   object-fit: cover !important;
   width: 100% !important;
