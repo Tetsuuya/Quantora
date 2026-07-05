@@ -242,9 +242,19 @@ h1 {
   height: 100% !important;
 }
 
-.image-with-text__media img,
-.image-with-text__media--placeholder {
-  content: url("https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop") !important;
+/* Replace Multirow row 1 image with premium snowboarder action shot */
+.multirow__item:nth-child(1) .image-with-text__media img,
+.multirow__item:nth-child(1) .multirow__media img {
+  content: url("https://images.unsplash.com/photo-1522056690407-3d4029474f38?q=80&w=1000&auto=format&fit=crop") !important;
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Replace Multirow row 2 image with wooden snowboard construction vibe */
+.multirow__item:nth-child(2) .image-with-text__media img,
+.multirow__item:nth-child(2) .multirow__media img {
+  content: url("https://images.unsplash.com/photo-1482867996988-2faec3cbb4f9?q=80&w=1000&auto=format&fit=crop") !important;
   object-fit: cover !important;
   width: 100% !important;
   height: 100% !important;
