@@ -1,0 +1,191 @@
+/*
+ * Quantora Premium Custom Theme Styles
+ * Overlays custom layouts, spacing, typography, animations, and UI details on top of standard Dawn theme.
+ */
+
+:root {
+  --font-body-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  --font-heading-family: 'Outfit', sans-serif !important;
+}
+
+/* --- Typography & Headings --- */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5,
+.product__title, .collection-hero__title {
+  font-family: var(--font-heading-family) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important; /* Elegant modern spacing */
+  line-height: 1.15 !important;
+}
+
+h1 {
+  font-weight: 800 !important;
+}
+
+body {
+  font-family: var(--font-body-family) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafafa !important; /* Cleaner, softer canvas */
+}
+
+/* --- Smooth Entrance Animations --- */
+@keyframes premiumFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main#MainContent {
+  animation: premiumFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* --- Premium Buttons & Call-to-Actions --- */
+.button, 
+.shopify-payment-button__button--unbranded,
+.cart-drawer .drawer__footer .button {
+  border-radius: 50px !important; /* Soft pill shapes */
+  text-transform: uppercase !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  padding: 1.2rem 3rem !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button Hover State */
+.button:not([disabled]):hover, 
+.shopify-payment-button__button--unbranded:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+.button:not([disabled]):active, 
+.shopify-payment-button__button--unbranded:active {
+  transform: translateY(0) !important;
+}
+
+/* Secondary/Outline Button overrides */
+.button--secondary {
+  background-color: transparent !important;
+  border: 2px solid rgba(0, 0, 0, 0.8) !important;
+  color: #000 !important;
+}
+
+.button--secondary:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+/* --- Modern Header Navigation --- */
+.header-wrapper {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.02) !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px);
+}
+
+.header__active-menu-item {
+  font-weight: 700 !important;
+}
+
+/* Menu link hover animation */
+.header__menu-item {
+  position: relative;
+  transition: color 0.25s ease !important;
+}
+
+.header__menu-item span {
+  position: relative;
+}
+
+.header__menu-item span::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.header__menu-item:hover span::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* --- Rounded, Animated Product Cards --- */
+.card-wrapper {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02) !important;
+  overflow: hidden !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.card-wrapper:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+.card__inner {
+  border-radius: 14px 14px 0 0 !important;
+  overflow: hidden !important;
+  background-color: #f6f6f6 !important;
+}
+
+/* Adjust title colors inside product cards */
+.card__heading {
+  font-family: var(--font-heading-family) !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+}
+
+.card-information {
+  padding: 1.5rem !important;
+}
+
+/* --- Softer inputs & Text fields --- */
+.field__input {
+  border-radius: 8px !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.12) !important;
+  transition: all 0.25s ease !important;
+}
+
+.field__input:focus {
+  border-color: #000 !important;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+.field__label {
+  left: 1.6rem !important;
+}
+
+/* --- Layout Spacing Enhancements --- */
+.section-template--main-product {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+
+/* --- Badges/Tags --- */
+.badge {
+  border-radius: 4px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  font-size: 1rem !important;
+  padding: 0.4rem 0.8rem !important;
+}
