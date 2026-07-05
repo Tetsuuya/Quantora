@@ -49,6 +49,30 @@
           "type": "description",
           "settings": {}
         },
+        "collapsible_tab_fit": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "FIT & MODEL INFO",
+            "content": "<p>Regular fit with engineered articulation for active winter performance on the slopes. Model is 185cm wearing size Large.</p>",
+            "icon": "pants"
+          }
+        },
+        "collapsible_tab_ingredients": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "INGREDIENTS",
+            "content": "<p>100% Recycled polyester outer shell with premium technical laminate coating (20,000mm waterproof / 20,000g breathability rating).</p>",
+            "icon": "leather"
+          }
+        },
+        "collapsible_tab_planet": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "PLANET",
+            "content": "<p>BlueSign approved fabrics, PFC-free DWR coatings, and packed in 100% compostable bio-plastics.</p>",
+            "icon": "leaf"
+          }
+        },
         "share": {
           "type": "share",
           "disabled": true,
@@ -65,6 +89,9 @@
         "price",
         "buy_buttons",
         "description",
+        "collapsible_tab_fit",
+        "collapsible_tab_ingredients",
+        "collapsible_tab_planet",
         "share"
       ],
       "settings": {

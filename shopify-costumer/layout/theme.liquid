@@ -452,6 +452,29 @@
         cols[2].src = col3Url;
         cols[2].removeAttribute("srcset");
       }
+      // 4. Inject PDP trust badges below buy buttons
+      if (window.location.pathname.includes('/products/')) {
+        const buyButtons = document.querySelector('.product-form__buttons');
+        if (buyButtons && !document.querySelector('.product__trust-badges')) {
+          const badges = document.createElement('div');
+          badges.className = 'product__trust-badges';
+          badges.innerHTML = `
+            <div class="product__trust-badge-item">
+              <span>⚡</span>
+              <span>FREE DELIVERY</span>
+            </div>
+            <div class="product__trust-badge-item">
+              <span>🔄</span>
+              <span>EASY RETURNS</span>
+            </div>
+            <div class="product__trust-badge-item">
+              <span>🛡️</span>
+              <span>2 YEAR WARRANTY</span>
+            </div>
+          `;
+          buyButtons.parentNode.insertBefore(badges, buyButtons.nextSibling);
+        }
+      }
     }
 
     // Run immediately and after short delays to ensure lazy-loaders are overridden

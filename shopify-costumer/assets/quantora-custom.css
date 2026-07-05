@@ -385,3 +385,199 @@ h1 {
   transform: translateY(-2px) !important;
 }
 
+/* --- Planks-Style Product Display Overrides --- */
+
+/* 1. Collection Grid Cards */
+.card__inner {
+  background-color: #f7f7f7 !important; /* Clean light-grey canvas like Planks */
+  border-radius: 0px !important;
+}
+
+.card__media img {
+  mix-blend-mode: multiply !important; /* Make cutout images blend perfectly */
+}
+
+/* Card titles: bold, clean uppercase */
+.card__heading, 
+.card__heading a,
+.card-product__heading {
+  font-family: var(--font-heading-family) !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #111111 !important;
+  font-size: 1.4rem !important;
+  transition: color 0.2s ease !important;
+}
+
+.card__heading a:hover {
+  color: #f872bd !important; /* Planks signature pink accent on hover */
+}
+
+/* Card Pricing: regular crossed-out, sale in red/pink */
+.price .price-item--regular {
+  color: #888888 !important;
+  text-decoration: line-through !important;
+  font-size: 1.2rem !important;
+  margin-right: 0.8rem !important;
+}
+
+.price .price-item--sale {
+  color: #f872bd !important; /* Signature pink active sale price */
+  font-weight: 800 !important;
+  font-size: 1.4rem !important;
+}
+
+/* Sale Badge: circular neon-pink badge in top-left */
+.card__inner .badge {
+  border-radius: 50% !important;
+  width: 45px !important;
+  height: 45px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  background-color: #f872bd !important;
+  color: #ffffff !important;
+  border: none !important;
+  position: absolute !important;
+  top: 1.2rem !important;
+  left: 1.2rem !important;
+  box-shadow: 0 4px 10px rgba(248, 114, 189, 0.4) !important;
+  z-index: 10 !important;
+}
+
+/* 2. Product Detail Page (PDP) Custom Swatches & Styling */
+
+/* Size Swatches: styled as clean square tiles */
+.product-form__input input[type="radio"] + label {
+  border: 1px solid #e2e2e2 !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-radius: 0px !important; /* Crisp square borders */
+  font-weight: 800 !important;
+  padding: 1.2rem 2rem !important;
+  min-width: 55px !important;
+  text-align: center !important;
+  font-size: 1.3rem !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  margin-right: 0.8rem !important;
+  margin-bottom: 0.8rem !important;
+  text-transform: uppercase !important;
+}
+
+.product-form__input input[type="radio"]:checked + label {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+.product-form__input input[type="radio"] + label:hover {
+  border-color: #000000 !important;
+  background-color: #f9f9f9 !important;
+}
+
+/* Variant picker heading: small, bold all-caps */
+.product-form__input .form__label {
+  font-size: 1.2rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 1.2rem !important;
+  color: #333333 !important;
+}
+
+/* PDP Main Price */
+.price--large .price-item--sale {
+  font-size: 2.4rem !important;
+  font-weight: 900 !important;
+  color: #f872bd !important;
+}
+
+.price--large .price-item--regular {
+  font-size: 1.8rem !important;
+  color: #999999 !important;
+}
+
+/* Full width buy buttons */
+.product-form__buttons .product-form__submit {
+  border-radius: 0px !important;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 1.3rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  padding: 1.6rem !important;
+  border: 1px solid #000000 !important;
+  transition: all 0.25s ease !important;
+}
+
+.product-form__buttons .product-form__submit:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Trust / Selling Badges */
+.product__trust-badges {
+  display: flex !important;
+  justify-content: space-between !important;
+  margin-top: 2.5rem !important;
+  padding-top: 2.5rem !important;
+  border-top: 1px solid #eaeaea !important;
+  text-align: center !important;
+  gap: 1rem;
+}
+
+.product__trust-badge-item {
+  flex: 1 !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #444444 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.4rem;
+}
+
+/* Borderless Accordions / Collapsible Tabs */
+.product__accordion {
+  border-top: none !important;
+  border-bottom: 1px solid #eaeaea !important;
+}
+
+.product__accordion details {
+  border: none !important;
+}
+
+.product__accordion summary {
+  padding: 2rem 0 !important;
+}
+
+.product__accordion .summary__title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.2rem !important;
+}
+
+.product__accordion summary h2 {
+  font-family: var(--font-heading-family) !important;
+  font-weight: 800 !important;
+  font-size: 1.4rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.product__accordion .accordion__content {
+  padding-bottom: 2.5rem !important;
+  font-size: 1.3rem !important;
+  line-height: 1.6 !important;
+  color: #555555 !important;
+}
+
+
