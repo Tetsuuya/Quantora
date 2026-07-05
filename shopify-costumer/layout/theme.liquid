@@ -409,6 +409,9 @@
     const heroBgUrl = "{{ 'hero-bg.jpg' | asset_url }}";
     const tech1Url = "{{ 'tech-1.jpg' | asset_url }}";
     const tech2Url = "{{ 'tech-2.jpg' | asset_url }}";
+    const col1Url = "{{ 'col-1.jpg' | asset_url }}";
+    const col2Url = "{{ 'col-2.jpg' | asset_url }}";
+    const col3Url = "{{ 'col-3.jpg' | asset_url }}";
 
     function replaceImages() {
       // 1. Replace main hero banner image
@@ -433,6 +436,21 @@
           row2Img.src = tech2Url;
           row2Img.removeAttribute("srcset");
         }
+      }
+
+      // 3. Replace Multicolumn (Planks style overlay cards) images
+      const cols = document.querySelectorAll(".multicolumn-card img");
+      if (cols.length > 0 && col1Url) {
+        cols[0].src = col1Url;
+        cols[0].removeAttribute("srcset");
+      }
+      if (cols.length > 1 && col2Url) {
+        cols[1].src = col2Url;
+        cols[1].removeAttribute("srcset");
+      }
+      if (cols.length > 2 && col3Url) {
+        cols[2].src = col3Url;
+        cols[2].removeAttribute("srcset");
       }
     }
 

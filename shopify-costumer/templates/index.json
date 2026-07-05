@@ -48,6 +48,60 @@
         "show_text_below": true
       }
     },
+    "gear_links": {
+      "type": "multicolumn",
+      "blocks": {
+        "col_1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/theme_cover_image.jpg",
+            "title": "THE CHARGER JACKET",
+            "text": "",
+            "link_label": "SHOP NOW",
+            "link": "shopify://collections/clothing-layers"
+          }
+        },
+        "col_2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/theme_cover_image.jpg",
+            "title": "THE ROAMER JACKET",
+            "text": "",
+            "link_label": "SHOP NOW",
+            "link": "shopify://collections/clothing-layers"
+          }
+        },
+        "col_3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/theme_cover_image.jpg",
+            "title": "THE GOOD TIMES JACKET",
+            "text": "",
+            "link_label": "SHOP NOW",
+            "link": "shopify://collections/clothing-layers"
+          }
+        }
+      },
+      "block_order": [
+        "col_1",
+        "col_2",
+        "col_3"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_shape": "rect",
+        "column_alignment": "center",
+        "columns_desktop": 3,
+        "color_scheme": "background-1",
+        "button_label": "",
+        "button_link": "",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "rich_text_intro": {
       "type": "rich-text",
       "blocks": {
@@ -224,6 +278,7 @@
   },
   "order": [
     "image_banner",
+    "gear_links",
     "rich_text_intro",
     "featured_products",
     "multirow_tech",
