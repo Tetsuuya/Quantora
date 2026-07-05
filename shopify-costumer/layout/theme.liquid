@@ -403,5 +403,40 @@
   }
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function replaceImages() {
+      // 1. Replace main hero banner image
+      const heroImg = document.querySelector(".banner__media img");
+      if (heroImg) {
+        heroImg.src = "https://images.unsplash.com/photo-1551698618-1ffd0197e2b6?q=80&w=1600&auto=format&fit=crop";
+        heroImg.removeAttribute("srcset");
+      }
+
+      // 2. Replace Multirow Row 1 and 2 images
+      const rows = document.querySelectorAll(".multirow__inner > .image-with-text");
+      if (rows.length > 0) {
+        const row1Img = rows[0].querySelector(".image-with-text__media img");
+        if (row1Img) {
+          row1Img.src = "https://images.unsplash.com/photo-1522056690407-3d4029474f38?q=80&w=1000&auto=format&fit=crop";
+          row1Img.removeAttribute("srcset");
+        }
+      }
+      if (rows.length > 1) {
+        const row2Img = rows[1].querySelector(".image-with-text__media img");
+        if (row2Img) {
+          row2Img.src = "https://images.unsplash.com/photo-1517176118179-c5548a19bba4?q=80&w=1000&auto=format&fit=crop";
+          row2Img.removeAttribute("srcset");
+        }
+      }
+    }
+
+    // Run immediately and after short delays to ensure lazy-loaders are overridden
+    replaceImages();
+    setTimeout(replaceImages, 300);
+    setTimeout(replaceImages, 1000);
+  });
+</script>
+
   </body>
 </html>
