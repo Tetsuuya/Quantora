@@ -6,6 +6,7 @@
 :root {
   --font-body-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
   --font-heading-family: 'Outfit', sans-serif !important;
+  --primary-accent: #008060; /* Sleek brand green */
 }
 
 /* --- Typography & Headings --- */
@@ -14,8 +15,9 @@ h1, h2, h3, h4, h5, h6,
 .product__title, .collection-hero__title {
   font-family: var(--font-heading-family) !important;
   font-weight: 700 !important;
-  letter-spacing: -0.03em !important; /* Elegant modern spacing */
-  line-height: 1.15 !important;
+  letter-spacing: -0.04em !important; /* Premium tight geometric headings */
+  line-height: 1.12 !important;
+  color: #0c0f12 !important;
 }
 
 h1 {
@@ -26,14 +28,14 @@ body {
   font-family: var(--font-body-family) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa !important; /* Cleaner, softer canvas */
+  background-color: #f7f9fa !important; /* Cleaner, softer modern canvas background */
 }
 
 /* --- Smooth Entrance Animations --- */
 @keyframes premiumFadeIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -42,65 +44,35 @@ body {
 }
 
 main#MainContent {
-  animation: premiumFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: premiumFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* --- Premium Buttons & Call-to-Actions --- */
-.button, 
-.shopify-payment-button__button--unbranded,
-.cart-drawer .drawer__footer .button {
-  border-radius: 50px !important; /* Soft pill shapes */
-  text-transform: uppercase !important;
-  font-size: 1.25rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.08em !important;
-  padding: 1.2rem 3rem !important;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
-  position: relative;
-  overflow: hidden;
+/* --- Glassmorphism Sticky Header --- */
+.shopify-section-group-header-group {
+  position: sticky !important;
+  top: 0;
+  z-index: 1000;
 }
 
-/* Button Hover State */
-.button:not([disabled]):hover, 
-.shopify-payment-button__button--unbranded:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
-}
-
-.button:not([disabled]):active, 
-.shopify-payment-button__button--unbranded:active {
-  transform: translateY(0) !important;
-}
-
-/* Secondary/Outline Button overrides */
-.button--secondary {
-  background-color: transparent !important;
-  border: 2px solid rgba(0, 0, 0, 0.8) !important;
-  color: #000 !important;
-}
-
-.button--secondary:hover {
-  background-color: #000 !important;
-  color: #fff !important;
-}
-
-/* --- Modern Header Navigation --- */
 .header-wrapper {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.02) !important;
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02) !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) !important; /* Ultra-clear glass blur */
+  -webkit-backdrop-filter: blur(20px) !important;
+  transition: all 0.3s ease !important;
 }
 
 .header__active-menu-item {
   font-weight: 700 !important;
+  color: #000 !important;
 }
 
 /* Menu link hover animation */
 .header__menu-item {
   position: relative;
   transition: color 0.25s ease !important;
+  font-weight: 500 !important;
 }
 
 .header__menu-item span {
@@ -115,9 +87,9 @@ main#MainContent {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: currentColor;
+  background-color: #000;
   transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .header__menu-item:hover span::after {
@@ -125,69 +97,157 @@ main#MainContent {
   transform-origin: bottom left;
 }
 
-/* --- Rounded, Animated Product Cards --- */
-.card-wrapper {
-  background: #ffffff !important;
-  border-radius: 16px !important;
-  border: 1px solid rgba(0, 0, 0, 0.04) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02) !important;
-  overflow: hidden !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+/* --- Glassmorphism Hero Text Frame --- */
+.banner__box {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.08) !important;
+  padding: 4rem 5rem !important;
 }
 
+/* --- Premium Buttons & Call-to-Actions --- */
+.button, 
+.shopify-payment-button__button--unbranded,
+.cart-drawer .drawer__footer .button {
+  border-radius: 50px !important; /* Soft pill shapes */
+  text-transform: uppercase !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  padding: 1.4rem 3.6rem !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
+  border: 1.5px solid transparent !important;
+}
+
+/* Button Hover State */
+.button:not([disabled]):hover, 
+.shopify-payment-button__button--unbranded:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14) !important;
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.button:not([disabled]):active, 
+.shopify-payment-button__button--unbranded:active {
+  transform: translateY(-1px) !important;
+}
+
+/* Secondary/Outline Button overrides */
+.button--secondary {
+  background-color: transparent !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.8) !important;
+  color: #000 !important;
+  box-shadow: none !important;
+}
+
+.button--secondary:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+
+/* --- Rounded, Interactive Product Cards --- */
+.card-wrapper {
+  background: #ffffff !important;
+  border-radius: 20px !important; /* Smooth curved card edges */
+  border: 1px solid rgba(0, 0, 0, 0.03) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.015) !important;
+  overflow: hidden !important;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Zoom Image effect on Hover */
 .card-wrapper:hover {
-  transform: translateY(-6px) !important;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08) !important;
-  border-color: rgba(0, 0, 0, 0.08) !important;
+  transform: translateY(-8px) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.07) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+.card-wrapper:hover .card__inner img {
+  transform: scale(1.06) !important; /* Subtle image zoom transition */
 }
 
 .card__inner {
-  border-radius: 14px 14px 0 0 !important;
+  border-radius: 18px 18px 0 0 !important;
   overflow: hidden !important;
-  background-color: #f6f6f6 !important;
+  background-color: #f3f5f6 !important;
+}
+
+.card__inner img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* Adjust title colors inside product cards */
 .card__heading {
   font-family: var(--font-heading-family) !important;
   font-weight: 600 !important;
-  font-size: 1.5rem !important;
+  font-size: 1.6rem !important;
+  line-height: 1.25 !important;
+  transition: color 0.2s ease !important;
+}
+
+.card-wrapper:hover .card__heading {
+  color: var(--primary-accent) !important; /* Accent glow on title hover */
 }
 
 .card-information {
-  padding: 1.5rem !important;
+  padding: 2rem !important;
+}
+
+/* Price presentation adjustment */
+.price {
+  font-weight: 700 !important;
+  font-size: 1.6rem !important;
+  color: #111 !important;
 }
 
 /* --- Softer inputs & Text fields --- */
 .field__input {
-  border-radius: 8px !important;
-  border: 1.5px solid rgba(0, 0, 0, 0.12) !important;
-  transition: all 0.25s ease !important;
+  border-radius: 12px !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  background-color: #fff !important;
 }
 
 .field__input:focus {
   border-color: #000 !important;
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04) !important;
 }
 
 .field__label {
-  left: 1.6rem !important;
+  left: 1.8rem !important;
 }
 
-/* --- Layout Spacing Enhancements --- */
+/* --- Layout Spacing & Spacing Alternation --- */
+.shopify-section {
+  margin-top: 6rem !important;
+  margin-bottom: 6rem !important;
+}
+
 .section-template--main-product {
-  padding-top: 4rem !important;
-  padding-bottom: 4rem !important;
+  padding-top: 6rem !important;
+  padding-bottom: 6rem !important;
 }
 
 /* --- Badges/Tags --- */
 .badge {
-  border-radius: 4px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.05em !important;
+  border-radius: 6px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
-  font-size: 1rem !important;
-  padding: 0.4rem 0.8rem !important;
+  font-size: 0.95rem !important;
+  padding: 0.5rem 1rem !important;
+  border: none !important;
+}
+
+.badge--sale {
+  background-color: #ffebe9 !important;
+  color: #ff3b30 !important;
 }
 
 /* --- Premium Image Overrides --- */
