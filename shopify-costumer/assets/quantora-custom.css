@@ -241,27 +241,29 @@ h1 {
 }
 
 /* --- Premium Image Overrides --- */
-/* Replace main hero image banner placeholder with premium skiing action shot */
+/* Hide the default img tags to bypass browser srcset overrides */
 .banner__media img,
-.banner__media--placeholder {
-  content: url("https://images.unsplash.com/photo-1551698618-1ffd0197e2b6?q=80&w=1600&auto=format&fit=crop") !important;
-  object-fit: cover !important;
-  width: 100% !important;
-  height: 100% !important;
+.multirow__inner img {
+  display: none !important;
 }
 
-/* Replace Multirow row 1 image with premium snowboarder peak view */
-.multirow__inner > div:nth-child(1) img {
-  content: url("https://images.unsplash.com/photo-1522056690407-3d4029474f38?q=80&w=1000&auto=format&fit=crop") !important;
-  object-fit: cover !important;
-  width: 100% !important;
-  height: 100% !important;
+/* Replace main hero banner image */
+.banner__media {
+  background-image: url("https://images.unsplash.com/photo-1551698618-1ffd0197e2b6?q=80&w=1600&auto=format&fit=crop") !important;
+  background-size: cover !important;
+  background-position: center !important;
 }
 
-/* Replace Multirow row 2 image with premium ski chairlift chair vibe */
-.multirow__inner > div:nth-child(2) img {
-  content: url("https://images.unsplash.com/photo-1517176118179-c5548a19bba4?q=80&w=1000&auto=format&fit=crop") !important;
-  object-fit: cover !important;
-  width: 100% !important;
-  height: 100% !important;
+/* Replace Multirow row 1 image (snowboarder peak view) */
+.multirow__inner > div:nth-child(1) .image-with-text__media {
+  background-image: url("https://images.unsplash.com/photo-1522056690407-3d4029474f38?q=80&w=1000&auto=format&fit=crop") !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* Replace Multirow row 2 image (premium ski resort vibe) */
+.multirow__inner > div:nth-child(2) .image-with-text__media {
+  background-image: url("https://images.unsplash.com/photo-1517176118179-c5548a19bba4?q=80&w=1000&auto=format&fit=crop") !important;
+  background-size: cover !important;
+  background-position: center !important;
 }
