@@ -155,7 +155,7 @@
         "paragraph": {
           "type": "paragraph",
           "settings": {
-            "text": "Sign up for exclusive releases, technical deep-dives, and seasonal winter gear guides."
+            "text": "<p>Sign up for exclusive releases, technical deep-dives, and seasonal winter gear guides.</p>"
           }
         },
         "email_form": {
