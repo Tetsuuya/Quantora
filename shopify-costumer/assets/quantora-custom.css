@@ -189,3 +189,22 @@ main#MainContent {
   font-size: 1rem !important;
   padding: 0.4rem 0.8rem !important;
 }
+
+/* --- Premium Image Overrides --- */
+/* Replace main hero image banner placeholder with premium snowboard action shot */
+.banner__media img,
+.banner__media--placeholder {
+  content: url("https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=1600&auto=format&fit=crop") !important;
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Replace Image-with-Text section image with premium close-up gear shot */
+.image-with-text__media img,
+.image-with-text__media--placeholder {
+  content: url("https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&w=1000&auto=format&fit=crop") !important;
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+}
