@@ -108,6 +108,30 @@
               </div>
             {%- endif -%}
 
+            {%- if filter_type == 'vertical' -%}
+              <div class="product-categories-sidebar-block" style="border-bottom: 2px solid #000000; padding-bottom: 1.5rem; margin-bottom: 2.5rem;">
+                <h2 class="facets__heading facets__heading--vertical caption-large text-body" style="border-bottom: none; padding-bottom: 0; margin-bottom: 1.5rem;">CATEGORIES</h2>
+                <ul class="list-unstyled" style="margin: 0; padding: 0; list-style-type: none;">
+                  {%- assign current_handle = collection.handle -%}
+                  <li style="padding: 0.6rem 0;">
+                    <a href="/collections/all" style="text-decoration: none; color: {% if current_handle == 'all' or current_handle == nil %}#f872bd{% else %}#111111{% endif %}; font-weight: 800; text-transform: uppercase; font-size: 1.25rem; letter-spacing: 0.05em; display: block;">All Products</a>
+                  </li>
+                  <li style="padding: 0.6rem 0;">
+                    <a href="/collections/automated-collection" style="text-decoration: none; color: {% if current_handle == 'automated-collection' %}#f872bd{% else %}#444444{% endif %}; font-weight: 800; text-transform: uppercase; font-size: 1.25rem; letter-spacing: 0.05em; display: block;">Snowboards</a>
+                  </li>
+                  <li style="padding: 0.6rem 0;">
+                    <a href="/collections/clothing-layers" style="text-decoration: none; color: {% if current_handle == 'clothing-layers' %}#f872bd{% else %}#444444{% endif %}; font-weight: 800; text-transform: uppercase; font-size: 1.25rem; letter-spacing: 0.05em; display: block;">Clothing & Layers</a>
+                  </li>
+                  <li style="padding: 0.6rem 0;">
+                    <a href="/collections/safety-accessories" style="text-decoration: none; color: {% if current_handle == 'safety-accessories' %}#f872bd{% else %}#444444{% endif %}; font-weight: 800; text-transform: uppercase; font-size: 1.25rem; letter-spacing: 0.05em; display: block;">Safety & Accessories</a>
+                  </li>
+                  <li style="padding: 0.6rem 0;">
+                    <a href="/collections/equipment" style="text-decoration: none; color: {% if current_handle == 'equipment' %}#f872bd{% else %}#444444{% endif %}; font-weight: 800; text-transform: uppercase; font-size: 1.25rem; letter-spacing: 0.05em; display: block;">Equipment</a>
+                  </li>
+                </ul>
+              </div>
+            {%- endif -%}
+
             <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
             {% comment %} Filters for both horizontal and vertical filter {% endcomment %}
             {%- for filter in results.filters -%}
