@@ -1,6 +1,6 @@
 // src/components/SalesOrders.tsx
 import { useEffect, useState } from 'react';
-import { ShoppingBag, RefreshCw, Search, ShoppingCart, User, Mail, Calendar, CreditCard, Tag } from 'lucide-react';
+import { ShoppingBag, RefreshCw, Search, User, Mail, Calendar, Tag } from 'lucide-react';
 import { api } from '../api/client';
 
 export default function SalesOrders({ showToast }: { showToast: (msg: string, type?: any) => void }) {

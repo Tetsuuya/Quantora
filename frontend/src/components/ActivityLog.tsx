@@ -1,6 +1,6 @@
 // src/components/ActivityLog.tsx
 import { useEffect, useState } from 'react';
-import { History, RefreshCw, Search, ArrowRight, Activity, Calendar, MapPin, Tag } from 'lucide-react';
+import { History, RefreshCw, Search, ArrowRight, Activity, Calendar, MapPin } from 'lucide-react';
 import { api } from '../api/client';
 
 export default function ActivityLog({ showToast }: { showToast: (msg: string, type?: any) => void }) {

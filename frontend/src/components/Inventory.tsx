@@ -1,5 +1,5 @@
 // src/components/Inventory.tsx
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Search, ScanLine, RefreshCw, Edit2, X, Check } from 'lucide-react';
 import { api } from '../api/client';
 

@@ -1,6 +1,6 @@
 // src/App.tsx
 import { useState } from 'react';
-import { LayoutDashboard, Package, Truck, ShoppingCart, Bell, Store, Link, Lock, ArrowRight, ShoppingBag, History } from 'lucide-react';
+import { LayoutDashboard, Package, Truck, ShoppingCart, Bell, Store, Lock, ArrowRight, ShoppingBag, History } from 'lucide-react';
 import './index.css';
 import { useToast } from './hooks/useToast';
 import ToastContainer from './components/ToastContainer';
